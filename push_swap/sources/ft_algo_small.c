@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push.c                                          :+:      :+:    :+:   */
+/*   ft_algo_small.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/11 23:49:12 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/11 23:49:14 by jzorreta         ###   ########.fr       */
+/*   Created: 2026/01/11 23:49:23 by jzorreta          #+#    #+#             */
+/*   Updated: 2026/01/11 23:49:25 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pa(t_stack *stack_a, t_stack *stack_b)
+void	ft_sort_three(t_stack *a)
 {
-	int	val;
+	int	first;
+	int	second;
+	int	third;
 
-	if (!stack_b || !stack_b->start)
-		return ;
-	val = ft_pop(stack_b);
-	ft_push(stack_a, val);
-	write(1, "pa\n", 3);
-}
-
-void	pb(t_stack *stack_a, t_stack *stack_b)
-{
-	int	val;
-
-	if (!stack_a || !stack_a->start)
-		return ;
-	val = ft_pop(stack_a);
-	ft_push(stack_b, val);
-	write(1, "pb\n", 3);
+	first = a->start->value;
+	second = a->start->next->value;
+	third = a->start->next->next->value;
+	if (first > second && first > third)
+	{
+		ra(a);
+		if (!is_sorted(a))
+			sa(a);
+	}
+	else if (second > first && second > third)
+	{
+		rra(a);
+		if (!is_sorted(a))
+			sa(a);
+	}
+	else
+	{
+		if (!is_sorted(a))
+			sa(a);
+	}
 }

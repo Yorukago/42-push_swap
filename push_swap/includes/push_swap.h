@@ -13,17 +13,22 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdlib.h>
 # include <unistd.h>
-# include <string.h>
-# include <stdio.h>
-# include <fcntl.h>
 # include <limits.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <stdbool.h>
 
 typedef struct s_node
 {
-	int				*value;
+	int				value;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
+	struct s_node	*target_node;
 	struct s_node	*next;
+	struct s_node	*prev;
 }	t_node;
 
 typedef struct s_stack
@@ -35,6 +40,8 @@ typedef struct s_stack
 void	ft_init_stack(t_stack *stack);
 int		ft_pop(t_stack *stack);
 void	ft_push(t_stack *stack, int value);
+void	ft_stack_add_back(t_stack *stack, int value);
+t_node	*ft_new_node(int value);
 
 void	ft_swap(t_stack *stack);
 void	sa(t_stack *stack_a);
@@ -53,5 +60,14 @@ void	ft_reverse_rotate(t_stack *stack);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 void	rrr(t_stack *a, t_stack *b);
+
+long	ft_atoi_long(const char *str, t_stack *a);
+int		has_duplicate(t_stack *stack, int num);
+int		ft_is_digit(char c);
+
+void	ft_error_exit(t_stack *a, t_stack *b);
+int		is_sorted(t_stack *stack);
+
+void	ft_sort_three(t_stack *a);
 
 #endif

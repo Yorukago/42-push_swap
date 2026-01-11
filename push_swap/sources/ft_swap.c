@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/11 22:50:12 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/11 22:50:13 by jzorreta         ###   ########.fr       */
+/*   Created: 2026/01/11 23:48:48 by jzorreta          #+#    #+#             */
+/*   Updated: 2026/01/11 23:48:51 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_swap(t_stack *stack)
 {
-	int	*temp_val;
+	int	temp_val;
 
 	if (!stack || !stack->start || !stack->start->next)
 		return ;
