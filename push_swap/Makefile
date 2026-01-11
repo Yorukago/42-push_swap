@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jzorreta <jzorreta@.42lisboa.com>          +#+  +:+       +#+         #
+#    By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/01/11 22:05:32 by jzorreta          #+#    #+#              #
-#    Updated: 2026/01/11 22:39:00 by jzorreta         ###   ########.fr        #
+#    Created: 2026/01/11 22:50:32 by jzorreta          #+#    #+#              #
+#    Updated: 2026/01/11 22:50:34 by jzorreta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
