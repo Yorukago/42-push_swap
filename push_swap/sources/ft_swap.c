@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   ft_swap.c											 :+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: jzorreta <jzorreta@.42lisboa.com>		  +#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2026/01/11 21:06:10 by jzorreta		  #+#	#+#			 */
+/*   Updated: 2026/01/11 21:06:30 by jzorreta		 ###   ########.fr	   */
+/*																			*/
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	ft_swap(t_stack *stack)
+{
+	int	*temp_val;
+
+	if (!stack || !stack->start || !stack->start->next)
+		return ;
+	temp_val = stack->start->value;
+	stack->start->value = stack->start->next->value;
+	stack->start->next->value = temp_val;
+}
+
+void	sa(t_stack *stack_a)
+{
+	ft_swap(stack_a);
+	write(1, "sa\n", 3);
+}
+
+void	sb(t_stack *stack_b)
+{
+	ft_swap(stack_b);
+	write(1, "sb\n", 3);
+}
+
+void	ss(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_swap(stack_a);
+	ft_swap(stack_b);
+	write(1, "ss\n", 3);
+}
