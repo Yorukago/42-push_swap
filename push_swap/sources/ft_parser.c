@@ -6,15 +6,28 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 23:49:18 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/11 23:49:20 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/01/12 22:59:36 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_is_digit(char c)
+int	is_number(char *str)
 {
-	return (c >= '0' && c <= '9');
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
+	{
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	has_duplicate(t_stack *stack, int num)
@@ -31,31 +44,49 @@ int	has_duplicate(t_stack *stack, int num)
 	return (0);
 }
 
-long	ft_atoi_long(const char *str, t_stack *a)
+long    ft_atoi_long(const char *str, t_stack *a)
 {
-	long	num;
-	int		sign;
+    long    num;
+    int     sign;
+    num = 0;
+    sign = 1;
 
-	num = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-' || *str == '+')
+    while (*str == ' ' || (*str >= 9 && *str <= 13))
+        str++;
+    if (*str == '-' || *str == '+')
+    {
+        if (*str == '-')
+            sign = -1;
+        str++;
+    }
+    if (!(*str >= '0' && *str <= '9'))
+        ft_error_exit(a, NULL);
+    while (*str >= '0' && *str <= '9')
+    {
+        num = num * 10 + (*str - '0');
+        if ((num * sign) > 2147483647L || (num * sign) < -2147483648L)
+            ft_error_exit(a, NULL);
+        str++;
+    }
+    if (*str != '\0')
+        ft_error_exit(a, NULL);
+    return (num * sign);
+}
+
+void	parse_and_add(t_stack *a, t_stack *b, char *str, char **split_to_free)
+{
+	long	tmp;
+
+	if (!is_number(str))
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		free_split(split_to_free);
+		ft_error_exit(a, b);
 	}
-	if (!ft_is_digit(*str))
-		ft_error_exit(a, NULL);
-	while (ft_is_digit(*str))
+	tmp = ft_atoi_long(str, a);
+	if (has_duplicate(a, (int)tmp))
 	{
-		num = num * 10 + (*str - '0');
-		if ((num * sign) > INT_MAX || (num * sign) < INT_MIN)
-			ft_error_exit(a, NULL);
-		str++;
+		free_split(split_to_free);
+		ft_error_exit(a, b);
 	}
-	if (*str != '\0')
-		ft_error_exit(a, NULL);
-	return (num * sign);
+	ft_stack_add_back(a, (int)tmp);
 }

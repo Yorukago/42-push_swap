@@ -6,7 +6,7 @@
 #    By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 22:50:32 by jzorreta          #+#    #+#              #
-#    Updated: 2026/01/11 23:37:56 by jzorreta         ###   ########.fr        #
+#    Updated: 2026/01/12 23:04:08 by jzorreta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ INC         = -I includes/
 SRC_DIR     = sources/
 OBJ_DIR     = obj/
 
-SRC_FILES   = ft_algo_small.c ft_parser.c ft_push.c ft_reverse_rotate.c ft_rotate.c ft_stack.c ft_swap.c push_swap.c utils.c main.c
+SRC_FILES   = ft_algo_small.c ft_parser.c ft_push.c ft_reverse_rotate.c ft_rotate.c ft_split.c ft_stack.c ft_stack_utils.c ft_swap.c utils.c main.c
 SRCS        = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS        = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
 
