@@ -70,4 +70,6 @@ int		is_sorted(t_stack *stack);
 
 void	ft_sort_three(t_stack *a);
 
+void	print_stacks(t_stack *a, t_stack *b);
+
 #endif

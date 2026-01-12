@@ -6,12 +6,38 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 23:48:20 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/11 23:48:21 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/01/12 00:00:43 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
+
+void	print_stacks(t_stack *a, t_stack *b)
+{
+	t_node *curr_a = a->start;
+	t_node *curr_b = b->start;
+
+	printf("\n--- STACK A ---   --- STACK B ---\n");
+	while (curr_a || curr_b)
+	{
+		if (curr_a)
+		{
+			printf("  %d", curr_a->value);
+			curr_a = curr_a->next;
+		}
+		else
+			printf("   ");
+		printf("             ");
+		if (curr_b)
+		{
+			printf("  %d", curr_b->value);
+			curr_b = curr_b->next;
+		}
+		printf("\n");
+	}
+	printf("---------------------------------\n\n");
+}
 
 int	main(int argc, char **argv)
 {
@@ -33,6 +59,7 @@ int	main(int argc, char **argv)
 		ft_stack_add_back(&a, (int)tmp);
 		i++;
 	}
+	print_stacks(&a, &b);
 	if (is_sorted(&a))
 	{
 		// free_stack(&a);
