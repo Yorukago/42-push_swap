@@ -6,7 +6,7 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 23:49:18 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/12 22:59:36 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/01/17 23:45:20 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,33 +44,33 @@ int	has_duplicate(t_stack *stack, int num)
 	return (0);
 }
 
-long    ft_atoi_long(const char *str, t_stack *a)
+long	ft_atoi_long(const char *str, t_stack *a)
 {
-    long    num;
-    int     sign;
-    num = 0;
-    sign = 1;
+	long	num;
+	int		sign;
 
-    while (*str == ' ' || (*str >= 9 && *str <= 13))
-        str++;
-    if (*str == '-' || *str == '+')
-    {
-        if (*str == '-')
-            sign = -1;
-        str++;
-    }
-    if (!(*str >= '0' && *str <= '9'))
-        ft_error_exit(a, NULL);
-    while (*str >= '0' && *str <= '9')
-    {
-        num = num * 10 + (*str - '0');
-        if ((num * sign) > 2147483647L || (num * sign) < -2147483648L)
-            ft_error_exit(a, NULL);
-        str++;
-    }
-    if (*str != '\0')
-        ft_error_exit(a, NULL);
-    return (num * sign);
+	num = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	if (!(*str >= '0' && *str <= '9'))
+		ft_error_exit(a, NULL);
+	while (*str >= '0' && *str <= '9')
+	{
+		num = num * 10 + (*str - '0');
+		if ((num * sign) > 2147483647L || (num * sign) < -2147483648L)
+			ft_error_exit(a, NULL);
+		str++;
+	}
+	if (*str != '\0')
+		ft_error_exit(a, NULL);
+	return (num * sign);
 }
 
 void	parse_and_add(t_stack *a, t_stack *b, char *str, char **split_to_free)

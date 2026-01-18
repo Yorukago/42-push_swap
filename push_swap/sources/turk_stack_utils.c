@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   turk_stack_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/11 23:48:37 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/12 22:49:27 by jzorreta         ###   ########.fr       */
+/*   Created: 2026/01/17 22:53:42 by jzorreta          #+#    #+#             */
+/*   Updated: 2026/01/17 22:58:48 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_node	*find_min(t_stack *stack)
 	t_node	*min_node;
 	t_node	*curr;
 
-	if (!stack->start)
+	if (!stack || !stack->start)
 		return (NULL);
 	min = LONG_MAX;
 	curr = stack->start;
@@ -34,48 +34,26 @@ t_node	*find_min(t_stack *stack)
 	return (min_node);
 }
 
-void	set_position(t_stack *stack)
+t_node	*find_max(t_stack *stack)
 {
-	t_node	*node;
-	int		i;
-	int		median;
+	long	max;
+	t_node	*max_node;
+	t_node	*curr;
 
 	if (!stack || !stack->start)
-		return ;
-	i = 0;
-	node = stack->start;
-	median = stack->size / 2;
-	while (node)
+		return (NULL);
+	max = LONG_MIN;
+	curr = stack->start;
+	while (curr)
 	{
-		node->index = i;
-		if (i <= median)
-			node->above_median = 1;
-		else
-			node->above_median = 0;
-		node = node->next;
-		i++;
-	}
-}
-
-void	finish_rotation(t_stack *stack, t_node *top_node, char stack_name)
-{
-	while (stack->start != top_node)
-	{
-		if (stack_name == 'a')
+		if (curr->value > max)
 		{
-			if (top_node->above_median)
-				ra(stack);
-			else
-				rra(stack);
+			max = curr->value;
+			max_node = curr;
 		}
-		else if (stack_name == 'b')
-		{
-			if (top_node->above_median)
-				rb(stack);
-			else
-				rrb(stack);
-		}
+		curr = curr->next;
 	}
+	return (max_node);
 }
 
 int	is_sorted(t_stack *stack)
@@ -94,10 +72,43 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	ft_error_exit(t_stack *a, t_stack *b)
+void	free_stack(t_stack *stack)
 {
-	(void)a;
-	(void)b;
-	write(2, "Error\n", 6);
-	exit(1);
+	t_node	*curr;
+	t_node	*tmp;
+
+	if (!stack || !stack->start)
+		return ;
+	curr = stack->start;
+	while (curr)
+	{
+		tmp = curr->next;
+		free(curr);
+		curr = tmp;
+	}
+	stack->start = NULL;
+	stack->size = 0;
+}
+
+void	ft_stack_add_back(t_stack *stack, int value)
+{
+	t_node	*new;
+	t_node	*last;
+
+	new = ft_new_node(value);
+	if (!new)
+		ft_error_exit(stack, NULL);
+	if (!stack->start)
+	{
+		stack->start = new;
+	}
+	else
+	{
+		last = stack->start;
+		while (last->next)
+			last = last->next;
+		last->next = new;
+		new->prev = last;
+	}
+	stack->size++;
 }

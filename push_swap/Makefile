@@ -6,7 +6,7 @@
 #    By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 22:50:32 by jzorreta          #+#    #+#              #
-#    Updated: 2026/01/12 23:04:08 by jzorreta         ###   ########.fr        #
+#    Updated: 2026/01/17 23:57:01 by jzorreta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,22 @@ INC         = -I includes/
 
 SRC_DIR     = sources/
 OBJ_DIR     = obj/
+SRC_FILES   = main.c \
+              ft_algo_small.c \
+              ft_parser.c \
+              ft_push.c \
+              ft_reverse_rotate.c \
+              ft_rotate.c \
+              ft_split.c \
+              ft_stack.c \
+              ft_swap.c \
+              turk_algo.c \
+              turk_helpers.c \
+              turk_init.c \
+              turk_push_to_a.c \
+              turk_stack_utils.c \
+              turk_utils.c
 
-SRC_FILES   = ft_algo_small.c ft_parser.c ft_push.c ft_reverse_rotate.c ft_rotate.c ft_split.c ft_stack.c ft_stack_utils.c ft_swap.c utils.c main.c
 SRCS        = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS        = $(SRC_FILES:%.c=$(OBJ_DIR)%.o)
 
@@ -53,7 +67,6 @@ $(NAME): $(OBJS)
 	@printf "$(PINK)$$ASCII_ART$(RESET)\n"
 	@printf "$(PINK)            			   push_swap has appeared! $(RESET)\n"
 
-# Compiling objects quietly
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
