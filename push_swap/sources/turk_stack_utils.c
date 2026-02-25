@@ -6,7 +6,7 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:53:42 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/17 22:58:48 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:04:16 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,43 +72,23 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	free_stack(t_stack *stack)
+void	finish_rotation(t_stack *stack, t_node *top_node, char stack_name)
 {
-	t_node	*curr;
-	t_node	*tmp;
-
-	if (!stack || !stack->start)
-		return ;
-	curr = stack->start;
-	while (curr)
+	while (stack->start != top_node)
 	{
-		tmp = curr->next;
-		free(curr);
-		curr = tmp;
+		if (stack_name == 'a')
+		{
+			if (top_node->above_median)
+				ra(stack);
+			else
+				rra(stack);
+		}
+		else if (stack_name == 'b')
+		{
+			if (top_node->above_median)
+				rb(stack);
+			else
+				rrb(stack);
+		}
 	}
-	stack->start = NULL;
-	stack->size = 0;
-}
-
-void	ft_stack_add_back(t_stack *stack, int value)
-{
-	t_node	*new;
-	t_node	*last;
-
-	new = ft_new_node(value);
-	if (!new)
-		ft_error_exit(stack, NULL);
-	if (!stack->start)
-	{
-		stack->start = new;
-	}
-	else
-	{
-		last = stack->start;
-		while (last->next)
-			last = last->next;
-		last->next = new;
-		new->prev = last;
-	}
-	stack->size++;
 }

@@ -6,7 +6,7 @@
 #    By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/11 22:50:32 by jzorreta          #+#    #+#              #
-#    Updated: 2026/01/17 23:57:01 by jzorreta         ###   ########.fr        #
+#    Updated: 2026/02/25 14:27:59 by jzorreta         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ SRC_FILES   = main.c \
               ft_stack.c \
               ft_swap.c \
               turk_algo.c \
-              turk_helpers.c \
               turk_init.c \
               turk_push_to_a.c \
               turk_stack_utils.c \

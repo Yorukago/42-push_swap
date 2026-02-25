@@ -6,48 +6,11 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:52:05 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/17 23:13:33 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/02/25 15:04:19 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	rotate_both(t_stack *a, t_stack *b, t_node *cheapest)
-{
-	while (a->start != cheapest && b->start != cheapest->target_node)
-		rr(a, b);
-	set_position(a);
-	set_position(b);
-}
-
-void	rev_rotate_both(t_stack *a, t_stack *b, t_node *cheapest)
-{
-	while (a->start != cheapest && b->start != cheapest->target_node)
-		rrr(a, b);
-	set_position(a);
-	set_position(b);
-}
-
-void	finish_rotation(t_stack *stack, t_node *top_node, char stack_name)
-{
-	while (stack->start != top_node)
-	{
-		if (stack_name == 'a')
-		{
-			if (top_node->above_median)
-				ra(stack);
-			else
-				rra(stack);
-		}
-		else if (stack_name == 'b')
-		{
-			if (top_node->above_median)
-				rb(stack);
-			else
-				rrb(stack);
-		}
-	}
-}
 
 void	min_on_top(t_stack *a)
 {
@@ -78,4 +41,27 @@ t_node	*get_cheapest(t_stack *stack)
 		curr = curr->next;
 	}
 	return (NULL);
+}
+
+t_node	*find_target_in_b(t_stack *b, int val_a)
+{
+	t_node	*curr_b;
+	t_node	*target;
+	long	best_idx;
+
+	target = NULL;
+	best_idx = LONG_MIN;
+	curr_b = b->start;
+	while (curr_b)
+	{
+		if (curr_b->value < val_a && curr_b->value > best_idx)
+		{
+			best_idx = curr_b->value;
+			target = curr_b;
+		}
+		curr_b = curr_b->next;
+	}
+	if (best_idx == LONG_MIN)
+		return (find_max(b));
+	return (target);
 }

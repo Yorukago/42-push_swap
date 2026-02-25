@@ -6,7 +6,7 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 23:49:07 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/11 23:49:09 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/02/24 10:16:50 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,12 @@ void	rrr(t_stack *a, t_stack *b)
 	ft_reverse_rotate(a);
 	ft_reverse_rotate(b);
 	write(1, "rrr\n", 4);
+}
+
+void	rev_rotate_both(t_stack *a, t_stack *b, t_node *cheapest)
+{
+	while (a->start != cheapest && b->start != cheapest->target_node)
+		rrr(a, b);
+	set_position(a);
+	set_position(b);
 }

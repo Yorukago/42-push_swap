@@ -6,7 +6,7 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 23:07:31 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/17 23:51:22 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/02/25 16:13:46 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_sort_three(t_stack *a);
 void	ft_sort_five(t_stack *a, t_stack *b);
 
 // parser.c
-long	ft_atoi_long(const char *str, t_stack *a);
+long	ft_atol(const char *str);
 int		has_duplicate(t_stack *stack, int num);
 int		is_number(char *str);
 void	parse_and_add(t_stack *a, t_stack *b, char *str, char **split_to_free);
@@ -115,5 +115,7 @@ void	rev_rotate_both(t_stack *a, t_stack *b, t_node *cheapest);
 void	finish_rotation(t_stack *stack, t_node *top_node, char stack_name);
 void	min_on_top(t_stack *a);
 t_node	*get_cheapest(t_stack *stack);
+
+int		starter(int argc, char **argv, t_stack *a, t_stack *b);
 
 #endif

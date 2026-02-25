@@ -6,7 +6,7 @@
 /*   By: jzorreta <jzorreta@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 22:49:46 by jzorreta          #+#    #+#             */
-/*   Updated: 2026/01/17 23:50:39 by jzorreta         ###   ########.fr       */
+/*   Updated: 2026/02/25 14:19:22 by jzorreta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,6 @@ void	init_nodes_a(t_stack *a, t_stack *b)
 	set_target_a(a, b);
 	set_cost_a(a, b);
 	set_cheapest(a);
-}
-
-void	set_position(t_stack *stack)
-{
-	int		i;
-	int		median;
-	t_node	*curr;
-
-	if (!stack || !stack->start)
-		return ;
-	i = 0;
-	median = stack->size / 2;
-	curr = stack->start;
-	while (curr)
-	{
-		curr->index = i;
-		if (i <= median)
-			curr->above_median = true;
-		else
-			curr->above_median = false;
-		curr = curr->next;
-		i++;
-	}
 }
 
 void	set_target_a(t_stack *a, t_stack *b)
@@ -75,6 +52,29 @@ void	set_cost_a(t_stack *a, t_stack *b)
 		else
 			curr_a->push_cost += size_b - (curr_a->target_node->index);
 		curr_a = curr_a->next;
+	}
+}
+
+void	set_position(t_stack *stack)
+{
+	int		i;
+	int		median;
+	t_node	*curr;
+
+	if (!stack || !stack->start)
+		return ;
+	i = 0;
+	median = stack->size / 2;
+	curr = stack->start;
+	while (curr)
+	{
+		curr->index = i;
+		if (i <= median)
+			curr->above_median = true;
+		else
+			curr->above_median = false;
+		curr = curr->next;
+		i++;
 	}
 }
 
