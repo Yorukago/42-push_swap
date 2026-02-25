@@ -34,7 +34,7 @@ Rather than implementing other algorithms, I decided to use the "Greedy Cost-Ana
 Let's suppose we have these numbers to sort: ```[10, 2, 45, 1, 6, 9]```
 
 1 - The initial push (A → B)
-No matter how many numbers it has on the stack (after 5 numbers), every number gets pushed to stack B and only the remaining 3 gets to stay on stack A, and then gets sorted with a hardocded sort_3
+No matter how many numbers it has on the stack (after 5 numbers), every number gets pushed to stack B and only the remaining 3 gets to stay on stack A, and then gets sorted with a hardcoded sort_3
 
 2 - Finding the target nodes + costs
 Once stack A gets sorted, it starts looking for the "smallest bigger" number, it holds the number from stack B, and looks for a number on stack A that's bigger than itself, but not the biggest in stack A. Afterwards, the greedy part of the algorithm starts kicking in, so in very simple terms, 1 move = 1 cost point... So to push things back to stack A we need to calculate how many moves we need to do to put the number on top of stack B, and then also pushing it and sorting it on stack A, so the actual math (simplified) is Total Cost = Moves for B + Moves for A
